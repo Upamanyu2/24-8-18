@@ -4,14 +4,14 @@ var read = readline.createInterface({
     input:process.stdin,
     output:process.stdout
 });
-function check()
-{   var arr=new Array();
-    read.question("Enter the string: ",function(s){
+function input()
+{   
+    read.question("Enter the string : ",function(n){
         
-            utility.check(s,arr);
+            utility.input(n);
             read.close();
         
          });
     
 }
-check();
+input();

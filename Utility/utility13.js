@@ -1,25 +1,47 @@
+var input = function(n)
+{
+   var alpha=[]
+   var alpha=n.split('');
+   permute(alpha,0,alpha.length-1)
+}
 
-var check = function(s,arr)
-{   var permutations = [];
-    var y=String(s);
-    if (typeof (y) == 'string') 
-    y = y.split('');
-    if(y.length==0)
-    permutations.push(arr.join(''));
-    for(var i=0;i<y.length;i++)
+var swap = function(alpha, index1, index2)   //swapping
+{
+    var temp=alpha[index1];
+    alpha[index1]=alpha[index2];
+    alpha[index2]=temp;   
+    return alpha;
+
+}
+
+
+var permute = function(alpha, startindex, endindex)
+{ 
+    if(startindex===endindex)
     {
-        var x = s.slice(i,1);
-        arr.push(x);
-        check(s,arr);
-        arr.pop();
-        s.slice(i,0,x);
-        
+        console.log(alpha.join(''));
+    }  
+    else{
+        for(var i=startindex;i<=endindex;i++)
+        {
+            swap(alpha,startindex,i);   //forward tracking
+            permute(alpha,startindex+1,endindex);
+            swap(alpha,i,startindex);   //backtracking
+        }
+
     }
-    console.log(permutations);
+}
+var swap = function(alpha, index1, index2)   //swapping
+{
+    var temp=alpha[index1];
+    alpha[index1]=alpha[index2];
+    alpha[index2]=temp;   
+    return alpha;
+
 }
 
 module.exports={
-    check : check
+    input : input
     
 
 }
