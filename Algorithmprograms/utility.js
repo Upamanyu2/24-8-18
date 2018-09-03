@@ -216,20 +216,22 @@ module.exports={
       /*Performs insertion sort to sort the numebrs inputted by the user*/ 
        bubbleSort : function(arr)
        {
+           var temp;
            var n = arr.length;
            for(var j=0;j<n-1;j++)  //loop for picking one variable.
            
-               for(k=0;k<n-j-1;k++) //loop for picking another variable
+               {for(k=0;k<n-j-1;k++) //loop for picking another variable
                
-                   if(arr[k]>arr[k+1])     /*Variables are compared
+                 {  if(Number.parseInt(arr[k])>Number.parseInt(arr[k+1]))     /*Variables are compared
                                              by this condition and 
                                             placed in the particular place*/
                    {
-                    var temp=arr[k];
+                    temp=arr[k];
                     arr[k]=arr[k+1];
                     arr[k+1]=temp;
                    }    
-               
+                }
+            }
            
        },
        /*Performs merge sort for the array*/
@@ -300,14 +302,290 @@ module.exports={
     /*Calculates the square root of the number provided as user input*/
     sqrt(value)
     { var t=value;
+        if(isNaN(value)===false)
+        {
         while(Math.abs(t-value/t)>Number.EPSILON*t)//condition for the step by step process of acalculting the loop.
         {
             t=((value/t)+t)/2;
         }
+    
      console.log("THe approx root of the value is: "+t);
+         }
+         else {
+             console.log("Invalid input");
+             
+
+         }
+    },
+    /*To calculate the day of the week*/
+    dayOfWeek : function(m, d, y)
+    {
+       
+       if(isNaN(d)===false && isNaN(m)===false && isNaN(y)===false)
+        {
+        var y1=y-(14-m)/12;
+        y1=Number.parseInt(y1);
+        var x=y1+(y1/4)-(y1/100)+(y1/400);
+        x=Number.parseInt(x);
+        var m1=(m+(12*((14-m)/12)))-2;
+        m1=Number.parseInt(m1);
+        var d1=Math.floor(((d+x+31*m1)/12)%7);
+
+        var day='';
+        switch(d1)                              /*switch case for printing
+                                                  the day according to the 
+                                                  number*/
+        {
+            case 0:
+            day = day+'Sunday';
+            break;
+            case 1:
+            day = day+'Monday';
+            break;
+            case 2: 
+            day = day+'Tuesday';
+            break;
+            case 3:
+            day = day+'Wednesday';
+            break;
+            case 4:
+            day = day+'Thrusday';
+            break;
+            case 5:
+            day = day+'Friday';
+            break;
+            case 6:
+            day = day+'Saturday';
+            break;
+        }
+        console.log(day);
+       // console.log(d1);
     }
-     
+    else console.log("Invalid input");
+
+    },
+    toBrinary(num)
+    {   
+       var brinaryNum=[];
+       var brinaryNum1=[];
+       brinaryNum.length=64;
+       brinaryNum.length=64;
+       var i=0;
+       var k=0;
+       while(num>0)
+       {
+           brinaryNum[i]=Math.floor(num%2);
+           num=Math.floor(num/2);
+           i++;
+       }
+       for(var j=i-1;j>=0;j--)
+       {
+           
+           console.log(brinaryNum[j]);
+           brinaryNum1[k]=brinaryNum[j];
+           k++;
+       }
+       return brinaryNum1;
+    },
+    /*To swap the nobble of bits and check whether it is a power of 2 or not.*/
+    bitsSwap:function(val)
+{
+    var arr=[];
+
+while(val>0)
+    {
+        var r=val%2;
+        arr.unshift(r);
+        val=Math.floor(val/2);
+        
+    }
+while(arr.length<8)                    //
+{
+    for(i=0;i<(8-arr.length);i++)   //adding 0 to blank bits
+    {
+        arr.unshift(0);             //
+    }
 
 }
-  
+console.log(arr);
+for(var i=0;i<4;i++)
+{
+    var temp=arr[4+i]       //
+    arr[4+i]=arr[i];        //swaping bits
+    arr[i]=temp;            //
+}
+console.log(arr)
+var sum=0;
 
+for(i=7;i>=0;i--)
+{
+    //console.log(Number(arr[7-i]))
+    sum=sum+(Number(arr[7-i])*this.pow(i)); //converting to decimal
+
+}
+
+console.log('value after bit swapping will be-->'+sum)
+this.isPower(sum);
+
+
+},
+
+pow:function(val)
+{
+    //console.log(val)
+    var a=1;
+    for(var i=1;i<=val;i++)
+    {
+        a=a*2;
+    }
+    //console.log(a)
+    return a;
+},
+/*To check whether a number is a power of two.*/
+isPower:function(val)
+{
+    var temp=val;
+    var count=0;
+    if(val%2==0)
+    {
+        while(val%2==0)
+        {
+            count++;
+            val=val/2;
+        }
+        if(val==1)
+        console.log('\nit is  power of 2-->2^'+count+'= '+temp);
+        else 
+        console.log('\nooups..It is not a power of 2\n');
+    }
+    else   
+        console.log('\nooups..It is not a power of 2\n');
+
+
+},
+/*To calculate the number of notes for the amount provided*/
+calculateMinNoNote : function(amount,mNote)
+{
+        
+        if(amount == 0) return;
+        
+    
+        //calculate 1000 rupess notes
+        if(amount>=1000){
+            mNote+=Math.floor(amount/1000);
+            console.log("1000 Rupes Notes is: "+Math.floor(amount/1000));
+            if(amount%1000 == 0){
+                console.log("min note required:"+(mNote))
+                return;}
+            else
+            this.calculateMinNoNote(amount%1000,mNote);
+        }
+        
+        //calculate 500 rupess notes
+        else if(amount>= 500){
+            mNote+=Math.floor(amount/500);
+            console.log("500 Rupes Notes is: "+Math.floor(amount/500));
+            if(amount%500 == 0){
+                console.log("min note required:"+(mNote))
+                return;
+            }
+            else{
+            this.calculateMinNoNote(amount%500,mNote);
+            }
+        }
+
+        //calculate 100 rupess notes
+        else if(amount>= 100){
+            mNote+=Math.floor(amount/100); 
+            console.log("100 Rupes Notes is: "+Math.floor(amount/100));
+            if(amount%100 == 0){console.log("min note required:"+(mNote))
+                return;}
+            else
+            this.calculateMinNoNote(amount%100,mNote);
+        }
+
+        //calculate 50 rupess notes
+        else if(amount>= 50){
+            mNote+=Math.floor(amount/50);
+            console.log("50 Rupes Notes is: "+Math.floor(amount/50));
+            if(amount%50 == 0){ console.log("min note required:"+(mNote))
+                return;}
+            else
+            this.calculateMinNoNote(amount%50,mNote);
+        }
+        
+        //calculate 10 rupess notes
+        else if(amount>= 10){
+            mNote+=Math.floor(amount/10); 
+            console.log("10 Rupes Notes is: "+(amount/10));
+            if(amount%10 == 0){
+
+         console.log("min note required:"+(mNote))
+                return;}
+            else
+            this.calculateMinNoNote(amount%10,mNote);
+        }
+
+        //calculate 5 rupess notes
+        else if(amount>= 5){
+            mNote+=Math.floor(amount/5); 
+            console.log("5 Rupes Notes is: "+Math.floor(amount/5));
+            if(amount%5 == 0){
+                console.log("min note required:"+(mNote))
+                return;}
+            else
+            this.calculateMinNoNote(amount%5,mNote);
+        }
+
+        //calculate 2 rupess notes
+        else if(amount>= 2){
+            mNote+=Math.floor(amount/2); 
+            console.log("2 Rupes Notes is: "+Math.floor(amount/2));
+            if(amount%2 == 0)
+            {console.log("min note required:"+(mNote));
+                return;}
+            else{
+                this.calculateMinNoNote(amount%2,mNote);
+            }
+        }
+
+        //calculate 1 rupess notes
+        else if(amount>= 1){
+            mNote+=Math.floor(amount/1);
+            console.log("1 Rupes Notes is: "+Math.floor(amount/1));
+            if(amount%1 == 0)
+              { console.log("min note required:"+(mNote));
+                return;}
+            else
+                this.calculateMinNoNote(amount%1,mNote);
+        }
+},
+/*To calculate the number time for each function*/
+everything : function(arr,search)
+{ 
+   var a=new Date()
+   var t=a.getMilliseconds();
+   arr=arr.sort();
+   var r=0;
+   var l=arr.length;
+   while(r<=l)
+   {
+    var mid=Math.floor((r+l)/2);
+    if(search==arr[mid])
+    {
+        console.log("Your search element is present!!");
+        process.exit();
+    }
+    else if(search>arr[mid])
+    {
+        r=mid+1;
+    }
+    else if(search<arr[mid])
+    {
+        r=mid-1;
+    }
+   }
+}
+
+  
+}
