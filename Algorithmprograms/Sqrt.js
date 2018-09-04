@@ -25,6 +25,15 @@ function sqrt()
 {
     read.question("Enter the number: ",function(value){
     utility.sqrt(value);
+    try{
+        if (value =="") throw "empty";
+        if (isNaN(value)) throw "Not a number";
+        value = Number(value);
+    }
+    catch(err)
+    {
+       console.log("Input is "+err);
+    }
     read.close();
     });
 

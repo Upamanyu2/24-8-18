@@ -211,6 +211,7 @@ module.exports={
               }
               arr[k+1]=key;             
           }
+          
            
        },   
       /*Performs insertion sort to sort the numebrs inputted by the user*/ 
@@ -302,34 +303,27 @@ module.exports={
     /*Calculates the square root of the number provided as user input*/
     sqrt(value)
     { var t=value;
-        if(isNaN(value)===false)
-        {
+       
         while(Math.abs(t-value/t)>Number.EPSILON*t)//condition for the step by step process of acalculting the loop.
         {
             t=((value/t)+t)/2;
         }
     
      console.log("THe approx root of the value is: "+t);
-         }
-         else {
-             console.log("Invalid input");
-             
-
-         }
     },
     /*To calculate the day of the week*/
-    dayOfWeek : function(m, d, y)
+    dayOfWeek : function(d, m, y)
     {
        
        if(isNaN(d)===false && isNaN(m)===false && isNaN(y)===false)
         {
-        var y1=y-(14-m)/12;
+        var y1=y-((14-m)/12);
         y1=Number.parseInt(y1);
         var x=y1+(y1/4)-(y1/100)+(y1/400);
         x=Number.parseInt(x);
-        var m1=(m+(12*((14-m)/12)))-2;
+        var m1=m+12*((14-m)/12)-2;
         m1=Number.parseInt(m1);
-        var d1=Math.floor(((d+x+31*m1)/12)%7);
+        var d1=Number.parseInt(((d+x+31*m1)/12)%7);
 
         var day='';
         switch(d1)                              /*switch case for printing
@@ -560,21 +554,20 @@ calculateMinNoNote : function(amount,mNote)
                 this.calculateMinNoNote(amount%1,mNote);
         }
 },
-/*To calculate the number time for each function*/
+/*To calculate the number of execution time for each function*/
 everything : function(arr,search)
 { 
-   var a=new Date()
-   var t=a.getMilliseconds();
+   
    arr=arr.sort();
    var r=0;
    var l=arr.length;
    while(r<=l)
    {
     var mid=Math.floor((r+l)/2);
-    if(search==arr[mid])
+    if(arr[mid]==search)
     {
         console.log("Your search element is present!!");
-        process.exit();
+        return;
     }
     else if(search>arr[mid])
     {
@@ -582,10 +575,66 @@ everything : function(arr,search)
     }
     else if(search<arr[mid])
     {
-        r=mid-1;
+        l=mid-1;
+    }
+    else 
+    {
+         console.log("Element not found!!");
+         return;
     }
    }
+},
+bubblesort : function(arr)
+{
+    var temp;
+    var n = arr.length;
+    for(var j=0;j<n-1;j++)  //loop for picking one variable.
+    
+        {for(k=0;k<n-j-1;k++) //loop for picking another variable
+        
+          {  if(Number.parseInt(arr[k])>Number.parseInt(arr[k+1]))     /*Variables are compared
+                                                                         by this condition and 
+                                                                         placed in the particular place*/
+            {
+             temp=arr[k];
+             arr[k]=arr[k+1];
+             arr[k+1]=temp;
+            }    
+         }
+     }
+},
+bubblesort1 : function(arr)
+{
+    var temp;
+    var n = arr.length;
+    for(var j=0;j<n-1;j++)  //loop for picking one variable.
+    
+        {for(k=0;k<n-j-1;k++) //loop for picking another variable
+        
+          {  if(arr[k]>arr[k+1])     /*Variables are compared
+                                      by this condition and 
+                                     placed in the particular place*/
+            {
+             temp=arr[k];
+             arr[k]=arr[k+1];
+             arr[k+1]=temp;
+            }    
+         }
+     }
+},
+getCurrentTime : function()
+{
+    var t =  new Date();
+    var a = t.getTime();
+    return a;
+},
+getElapsedTime : function(a,a1)
+{
+    var elapsedTime=(a1-a);
+    console.log("The time taken: "+elapsedTime);
 }
+
+
 
   
 }
