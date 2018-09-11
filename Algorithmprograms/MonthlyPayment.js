@@ -26,6 +26,17 @@ function monthlyPayment()
      read.question("Enter the number of year: ", function(Y){
       read.question("Enter the rate percent: ",function(R){
          utility.monthlyPayment(P,Y,R);
+         try{
+            if (P ==" " || Y == " " || R == " ") throw "empty"; 
+            if (isNaN(P) || isNaN(Y) || isNaN(R)) throw "not a number";
+            P = Number(P);
+            Y = Number(Y);
+            R = Number(R);
+        }
+        catch(err)
+        {
+           console.log("Input is "+err);
+        }
          read.close();
       });
      });

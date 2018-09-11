@@ -25,7 +25,7 @@ module.exports={
            {
               s1=s1+array2[i];
            }
-           if(s1==s)  // comparing the strings are equal or not.
+           if(s1.toUpperCase()==s.toUpperCase())  // comparing the strings are equal or not.
            {
                console.log("It is an anagram.");
            }
@@ -35,7 +35,8 @@ module.exports={
            }
      
             },
-     /*This is a module function to display all the prime numbers between a range that is given by user*/
+            /**
+             * This is a module function to display all the prime numbers between a range that is given by user*/
             primeChecker : function(min, max)
             {   
                 var flag=0;
@@ -65,9 +66,9 @@ module.exports={
 /*Finds anagram and palindromic numbers between a range*/
             palinAnag : function(num)
             {var arr=[];var arr2=[];
-            if(isNaN(num)) console.log("Invalid input")
+           // if(isNaN(num)) console.log("Invalid input")
             for(var i = 0; i <= num; i++)
-            {   if(i==2)  console.log("2")
+            {  
                 for( var j = 2; j < i; j++)
                 {
                     if(i % j == 0)
@@ -168,7 +169,7 @@ module.exports={
        {
         var fs = require('fs');
         var text = fs.readFileSync('myFile.txt','utf8');//used to read the file.
-           var arr=text.split(","); //splits each string from the separator
+           var arr=text.split(" "); //splits each string from the separator
            arr=arr.sort(); //sorts the string
            var r=0;
            var l=arr.length;
@@ -199,7 +200,25 @@ module.exports={
        insertionSort : function(arr)
        {   
           var n=arr.length;
-          for(var j=1;j<n;j++)//loop for traversing the array.
+          for(var j=0;j<n;++j)//loop for traversing the array.
+          {
+              var key=arr[j];
+              var k=j-1;
+              while(k>=0 && Number(arr[k])>Number(key))
+              {
+                  arr[k+1]=arr[k];      /*swapping of position is 
+                                         performed*/
+                   k=k-1;
+              }
+              arr[k+1]=key;             
+          }
+          
+         return arr;  
+       },  
+       insertionSort1 : function(arr)
+       {   
+          var n=arr.length;
+          for(var j=0;j<n;++j)//loop for traversing the array.
           {
               var key=arr[j];
               var k=j-1;
@@ -212,8 +231,8 @@ module.exports={
               arr[k+1]=key;             
           }
           
-           
-       },   
+         return arr;  
+       },  
       /*Performs insertion sort to sort the numebrs inputted by the user*/ 
        bubbleSort : function(arr)
        {
@@ -273,7 +292,7 @@ module.exports={
 
 },
 /*conversion of temperatue scale*/
-    coversion: function(temp,value)
+    conversion: function(value,temp)
     {
         if(isNaN(temp)===false)
         {
@@ -298,6 +317,11 @@ module.exports={
         var r=R/(12*100);
         var n=12*Y;
         var payment=(P*r)/(1-(Math.pow(1+r,(-n)))); //Calculates the monthly payment accorting to some interest.
+        if(isNaN(payment)==true)
+        {
+            console.log("Invalid input");
+        }
+        else
         console.log("The monthly payment is: "+payment);
     },
     /*Calculates the square root of the number provided as user input*/
@@ -317,14 +341,41 @@ module.exports={
        
        if(isNaN(d)===false && isNaN(m)===false && isNaN(y)===false)
         {
-        var y1=y-((14-m)/12);
-        y1=Number.parseInt(y1);
-        var x=y1+(y1/4)-(y1/100)+(y1/400);
-        x=Number.parseInt(x);
-        var m1=m+12*((14-m)/12)-2;
-        m1=Number.parseInt(m1);
-        var d1=Number.parseInt(((d+x+31*m1)/12)%7);
+            if ((y%400)||(y%100 && y%4))
+            {
+                try
+                {
+                    if(m==2 && d>29) throw "enter a valid date"
+                }
+                catch(err)
+                {
+                   console.log(err);
+                   process.exit();
+                }
+            }
+            else
+            {
+                try{
+                    if(m==2 && d>28) "enter a valid date"
+                }
+                catch(err)
+                {
+                    console.log(err);
+                    process.exit();
+                }
 
+            }
+        var y1=(y-((14-m)/12));
+        y1= Number.parseInt(y1);
+        //console.log(y1);
+        var x=(y1+(y1/4)-(y1/100)+(y1/400));
+        x=Number.parseInt(x);
+        //console.log(x);
+        var m1=m+(12*((14-m)/12))-2;
+        m1=Number.parseInt(m1);
+        //console.log(m1);
+        var d1=parseInt(((d+x+(31*m1))/12)%7-1);
+        //var d1=d1-1;
         var day='';
         switch(d1)                              /*switch case for printing
                                                   the day according to the 
@@ -631,7 +682,7 @@ getCurrentTime : function()
 getElapsedTime : function(a,a1)
 {
     var elapsedTime=(a1-a);
-    console.log("The time taken: "+elapsedTime);
+    console.log("The time taken: "+elapsedTime+" millisecond");
 }
 
 

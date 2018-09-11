@@ -24,17 +24,19 @@ var read = readline.createInterface({
 function sqrt()
 {
     read.question("Enter the number: ",function(value){
-    utility.sqrt(value);
     try{
-        if (value =="") throw "empty";
+        if (value ==" ") throw "empty";
         if (isNaN(value)) throw "Not a number";
         value = Number(value);
+        utility.sqrt(value);
+        read.close();
     }
     catch(err)
     {
        console.log("Input is "+err);
+       sqrt()
     }
-    read.close();
+    
     });
 
 }

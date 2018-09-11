@@ -24,15 +24,18 @@ var read = readline.createInterface({
 
 function brinarySearch()
 {
-    read.question("Enter the searched word: ",function(str){
-        if(isNaN(str))
+    read.question("Enter the search word: ",function(str){
+        try
         {
+            if(isNaN(str)==false) throw "Enter a string only"
             utility.brinarySearch(str);
+            read.close();
         }
-        else
+        catch(err)
             {
-           console.log("Invalid input");
-           process.exit();
+                    console.log(err);
+                    brinarySearch()
+                    
             }
     });
 }

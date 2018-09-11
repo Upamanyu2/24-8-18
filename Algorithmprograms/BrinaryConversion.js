@@ -24,6 +24,15 @@ function toBrinary()
 {
     read.question("Enter the decimal number: ",function(num){
       utility.toBrinary(num);
+      try{
+        if (num ==" ") throw "empty"; 
+        if (isNaN(num)) throw "not a number";
+        num = Number(num);
+    }
+    catch(err)
+    {
+       console.log("Input is "+err);
+    }
        read.close();
     });
 

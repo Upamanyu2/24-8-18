@@ -22,11 +22,24 @@ var read = readline.createInterface({
 });
 function conversion()
 {
-    read.question("Enter the temperature: ",function(temp){
-        read.question("Enter the temperature scale(F/C): ",function(value){
-         utility.coversion(temp,value);
-         read.close();
-        });
-    });
+    read.question("Enter the temperature scale(F/C): ",function(value) {
+        try{
+            //console.log(value);
+            if (value!=="f" && value!=="c" && value!=="F" && value!=="C")throw "not valid";
+            read.question("Enter the temperature: ",function(temp) {                                                 
+            utility.conversion(value, temp);
+            if (temp ==" " || value==" ") throw "empty"; 
+            if (isNaN(temp)) throw "not a number";
+                temp = Number(temp);
+                value = Number(value);
+                read.close();
+            });
+        }
+        catch(err)
+        {
+            console.log("Input is "+err);
+            conversion()
+        }
+    }); 
 }
 conversion();

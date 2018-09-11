@@ -16,9 +16,6 @@
  ******************************************************************************/
 var utility = require('../Algorithmprograms/utility.js');
 
- var d=process.argv[2];
- var m=process.argv[3];
- var y=process.argv[4];
 
 
 
@@ -26,9 +23,23 @@ var utility = require('../Algorithmprograms/utility.js');
 
 function dayOfWeek()
 {
-    
+    var d=process.argv[2];
+    var m=process.argv[3];
+    var y=process.argv[4];
      //if(isNaN(date)===true)
-     utility.dayOfWeek(d,m,y);
+     utility.dayOfWeek(d,m,y); 
+     try{
+        if (d ==" " || m==" " || y==" ") throw "empty";
+        if (isNaN(d) || isNaN(m) || isNaN(y)) throw "not a number";
+        d = Number(d);
+        m = Number(m);
+        y = Number(y);   
+    }
+    catch(err)
+    {
+       console.log("Input is "+err);
+       
+    }
      //else console.log("Invalid input");
              
 

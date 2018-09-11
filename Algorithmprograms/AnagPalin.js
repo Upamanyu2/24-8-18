@@ -26,7 +26,18 @@ function palinAnag()
     read.question("Enter the minimum limit: ",function(num){
     
         utility.palinAnag(num);
-        process.exit();
+        try{
+            if (num ==" ") throw "empty"; 
+            if (isNaN(num)) throw "Not a number";
+            num = Number(num);
+            process.exit();
+        }
+        catch(err)
+        {
+           console.log("Input is "+err);
+           palinAnag()
+        }
+
     });
     
 }

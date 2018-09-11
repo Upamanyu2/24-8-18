@@ -26,6 +26,15 @@ function anagram()
     read.question("Enter the string1 : ",function(x){
         read.question("Enter string2 :  ",function(y){
              utility.anagram(x,y);
+             try{
+                if (x ==" " || y==" ") throw "empty";
+                if (isNaN(x)==false || isNaN(y)==false) throw "not a string";
+                
+            }
+            catch(err)
+            {
+               console.log("Input is "+err);
+            }
              read.close();
         });
 

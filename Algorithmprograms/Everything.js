@@ -63,16 +63,16 @@ function everything()
             {
                 a=utility.getCurrentTime();
                 utility.bubblesort(arr);
-                a1=utility.getCurrentTime();
                 console.log("The sorted array is: "+arr);
+                a1=utility.getCurrentTime();
                 utility.getElapsedTime(a,a1);
             }
             if(str=='string')
             {
                 a=utility.getCurrentTime();
                 utility.bubblesort1(arr);
-                a1=utility.getCurrentTime();
                 console.log("The sorted array is: "+arr);
+                a1=utility.getCurrentTime();
                 utility.getElapsedTime(a,a1);
             }
         }

@@ -28,8 +28,11 @@ function insertionSort()
         var x=readlineSync.question(`Enter the element at position ${i}: `);
         arr.push(x);
      }
-     utility.insertionSort(arr);
-     console.log("The sorted array:  "+arr);
+     if(isNaN(arr[0])===false)
+     var arr1=utility.insertionSort(arr)
+     else
+     var arr1=utility.insertionSort1(arr)
+     console.log("The sorted array:  "+arr1);
     }
     else console.log("Invalid");
 }
