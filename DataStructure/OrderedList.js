@@ -10,6 +10,7 @@ function ordered()
         try{
             if(isNaN(str1)) throw "Enter only number"
             if(str1==" ") throw "Input is empty"
+            if(str1 == "") throw "Empty";
             utility.ordered(str1);
         }
         catch(err){

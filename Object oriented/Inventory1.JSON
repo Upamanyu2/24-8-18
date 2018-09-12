@@ -1,0 +1,20 @@
+{
+    "Rice" :
+        {
+            "Property" : ["Basmati Rice","Polished Rice","Brown Rice"],
+            "Weight" : [200,300,650],
+            "Price" : [50,40,35]
+        },
+    "Wheat" :
+        {
+            "Property" : ["Spring Wheat","Winter Wheat","Durum Wheat"],
+            "Weight" : [450,230,500],
+            "Price" : [40,65,55]
+        },
+    "Pulses" :
+        {
+            "Property" : ["Lentils","Peas","Beans"],
+            "Weight" : [200,350,400],
+            "Price" : [50,45,25]
+        }
+}

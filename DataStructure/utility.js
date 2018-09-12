@@ -1144,8 +1144,8 @@ anagramPrimeCheck: function (arr) {
         dateObj.setMonth(month-1);
         dateObj.setDate(1);
         var day=dateObj.getDay();
-        console.log(numberOfDays);
-        console.log(day);
+        // console.log(numberOfDays);
+        // console.log(day);
         var queue=new Queue1();
         queue.enqueue("SUN");
         queue.enqueue("MON");
@@ -1261,7 +1261,170 @@ anagramPrimeCheck: function (arr) {
         
 
 
-    }
+    },
+    stackCalender : function(month,year){
+        var numberOfDays = new Date(year, month, 0).getDate();
+        var dateObj=new Date(); 
+        dateObj.setFullYear(year);
+        dateObj.setMonth(month-1);
+        dateObj.setDate(1);
+        var day=dateObj.getDay();  
+        var queue=new Queue1();
+        queue.enqueue("SUN");
+        queue.enqueue("MON");
+        queue.enqueue("TUE");
+        queue.enqueue("WED");
+        queue.enqueue("THU");
+        queue.enqueue("FRI");
+        queue.enqueue("SAT"); 
+        switch(day)
+        {
+            case 0: 
+            break;
+            case 1: queue.enqueue(" ");
+            break;
+            case 2: queue.enqueue(" ");
+                    queue.enqueue(" ");
+            break;
+            case 3: queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+            break;
+            case 4: queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+            break;
+            case 5: queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+            break;
+            case 6: queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+                    queue.enqueue(" ");
+            break;
+        }
+        for(var i=1;i<=numberOfDays;i++){
+            
+            queue.enqueue(i);
+            
+        }
+        var stack=new Stack1();
+        var stack1=new Stack1();
+        for(var i=1;i<=(numberOfDays+day+7);i++)
+        {
+            var n=queue.front();
+            queue.dequeue();
+            stack.push(n);
+        }
+        for(var j=1;j<=(numberOfDays+day+7);j++)
+        {
+            var n1=stack.peek();
+            stack.pop()
+            stack1.push(n1);
+        }
+        // console.log(stack.printList());
+         // console.log(stack1.printList());
+         var string="";
+        var string1="";
+        var string2="";
+        var string3="";
+        var string4="";
+        var string5="";
+        for(var j=0;j<7;j++){
+          var k=stack1.peek();
+          stack1.pop();
+          string=string+k+" ";
+        }
+        console.log(string);
+        for(var j=0;j<7;j++){
+            var k=stack1.peek();
+            stack1.pop();
+            string1=string1+" "+k+"  ";
+          }
+          console.log(string1);
+          for(var j=0;j<7;j++){
+            var k=stack1.peek();
+            stack1.pop();
+            if(k<10)
+            string2=string2+" "+k+"  ";
+            else
+            string2=string2+" "+k+" ";
+
+          }
+          console.log(string2);
+          for(var j=0;j<7;j++){
+            var k=stack1.peek();
+            stack1.pop();
+            if(k<10)
+            string3=string3+" "+k+"  ";
+            else
+            string3=string3+" "+k+" ";
+
+          }
+          console.log(string3);
+          for(var j=0;j<7;j++){
+            var k=stack1.peek();
+            stack1.pop();
+            if(k<10)
+            string4=string4+" "+k+"  ";
+            else
+            string4=string4+" "+k+" ";
+          }
+          console.log(string4);
+          if(month==2 && (year%400==0||(year%100!=0&&year%4==0))){
+              var k1=numberOfDays+day+1;
+          }
+          else if(month==2){
+              var k1=numberOfDays+day;
+          }
+          else{
+              var k1=numberOfDays+day+3;
+          }
+
+          for(var j=n+1;j<=k1;j++){
+            var k=stack1.peek();
+            stack1.pop();
+            if(k<10)
+            string5=string5+" "+k+"  ";
+            else
+            string5=string5+" "+k+" ";
+            // if(j>numberOfDays+day+7)
+            // string5=" ";
+            // if(k=="null")
+            // {
+            //     k=" ";
+            // }
+          
+        } 
+        console.log(string5);
+    },
+    binarySearchTrees:function(nodes)
+        {
+            var firstTerm = parseInt(2*nodes);
+            var secondTerm =(1+nodes);
+            var thirdTerm = nodes;
+            var numberofBinarySearchTress = parseInt(this.factorial(firstTerm)/parseInt(this.factorial(secondTerm)*this.factorial(thirdTerm)));
+            
+                    
+            return numberofBinarySearchTress;
+
+        },
+    factorial(n) 
+        { 
+            var res = 1;
+            for (var i = 1; i <= n; ++i) 
+            { 
+                res *= i; 
+            } 
+        
+            return res; 
+        }
 }
  
     

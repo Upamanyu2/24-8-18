@@ -10,6 +10,7 @@ function anagramQueue(){
         read.question("Enter the maximum range: ", function(max){
             try{
                 if(min==" " || max==" ") throw "Enter some integer as a range."
+                if(min == ""||max=="") throw "Empty";
                 if(isNaN(min) || isNaN(max)) throw "Enter only integer as range."
                 //var decimal=  /^[-+]?[0-9]+\.[0-9]+$/;
                 if((min-Math.floor(min))!=0 ||((max-Math.floor(max))!==0)) throw "Enter only integer as a range"

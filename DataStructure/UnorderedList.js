@@ -9,6 +9,7 @@ function unordered()
   read.question("Enter the string to find-->  ",function(str){
     try{
         if(str==" ") throw "Invalid input"
+        if(str == "") throw "Empty";
         if(isNaN(str)==false) throw "Enter only a string"
         utility.unordered(str);
         read.close();
