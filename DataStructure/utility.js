@@ -1,3 +1,7 @@
+/**
+* @description Node class is created for each node creation.
+* @class Node
+*/
 class Node {
     // constructor
     constructor(element) {
@@ -5,6 +9,10 @@ class Node {
         this.next = null
     }
 }
+/**
+* @description NodeLL class is created for the stack and que with linked list implementation.
+* @class NodeLL
+*/
 class NodeLL {
     constructor(e, n) {
         this.ele = e;
@@ -14,34 +22,32 @@ class NodeLL {
 
 
 
+/**
+  * @description Implementation of the linked list.
+  * @class LinkedList
+  */
 class LinkedList {
     constructor() {
         this.head = null;
         this.size = 0;
     }
-
-            // functions to be implemented
             // add(element)
             add(element) {
                 // creates a new node
                 var node = new Node(element);
-
                 // to store current node
                 var current;
-
                 // if list is Empty add the
                 // element and make it head
                 if (this.head == null)
                     this.head = node;
                 else {
                     current = this.head;
-
                     // iterate to the end of the
                     // list
                     while (current.next) {
                         current = current.next;
                     }
-
                     // add node
                     current.next = node;
                 }
@@ -292,6 +298,10 @@ class LinkedList {
             }
             
 }
+/**
+  * @description Implementation of the stack.
+  * @class Stack
+  */
 class Stack{
     constructor()
     {
@@ -336,6 +346,10 @@ class Stack{
     }
 
 }
+/**
+  * @description Implementation of the stack likewise linked list implementation.
+  * @class Stack1
+  */
 class Stack1 {
 
     constructor() {
@@ -343,67 +357,62 @@ class Stack1 {
         this.last = null;
         this.count = 0;
     }
-
+/*Used for creating new node for the new element insertion into the stack.*/
     stack() {
 
-        this.first = new NodeLL(null, null);
-        this.last = this.first;
-        this.count++;
+        this.first = new NodeLL(null, null);//new node is created.
+        this.last = this.first;//first assigned to last node as no element is present.
+        this.count++;//count increased.
     }
-
+/*Used for calculating the size of the stack.*/
     size() {
-        return this.count;
+        return this.count;// returning the size of the stack.
     }
-
+/*Checks whether the stack is empty or not.*/
     isEmpty() {
 
         if (this.size() === 0)
-            return -1
-        else return 1;
+            return -1 //if the stack is not empty.
+        else return 1;//if the stack is empty.
     }
-
+/*Used for deleting each element from the stack from the front.*/
     pop() {
 
-        if (this.first === null) return null;
-
+        if (this.first === null) return null;//making the node null by deleting the element.
         var n = this.first.ele;
-
-        this.first = this.first.next;
-        this.count--;
+        this.first = this.first.next;//swapping the elements.
+        this.count--;//decreasing the count.
         return n;
     }
-
+/*Used for creating new node for the new element insertion into the stack*/
     push(e) {
-
-
-        this.first = new NodeLL(e, this.first);
-        this.count++;
-
+        this.first = new NodeLL(e, this.first);//Making new node for entering new element.
+        this.count++;//increasing the count.
     }
-
+/*Returns the first element without deleting it.*/
     peek(){
-
         if(this.first === null) return null;
-
         return this.first.ele;
     }
-
+/*Used for printing the stack.*/
     printList(){
 
-        if (this.size()===0) return "[]";
-
+        if (this.size()===0) return "[]";//Returns empty array if the stack is empty.
         var n = this.first;
-        var str = n.ele+" ";
+        var str = n.ele+" ";//converts into a string and printing the stack.
         while(n.next!== null){
 
-            n = n.next;
-            str += n.ele+" ";
+            n = n.next;//iterating the loop to the next element.
+            str += n.ele+" ";//adding each element to the string.
         }
-        return str;
-        
+        return str;//returns the string.  
      }
 
 }
+/**
+  * @description Implementation of the queue.
+  * @class Queue
+  */
 class Queue
 {
     constructor()
@@ -449,6 +458,10 @@ class Queue
           return this.items.length;
     }
 }
+/**
+  * @description Implementation of the deque.
+  * @class Deque
+  */
  
 class Deque
 {
@@ -507,6 +520,10 @@ class Deque
           return this.items.length;
     }
 }
+/**
+  * @description Implementation of the queue likewise linked list implementation.
+  * @class Queue1
+  */
 class Queue1 {
 
     constructor() {
@@ -514,74 +531,74 @@ class Queue1 {
         this.rear = null;
         this.count = 0;
     }
-
+/*Used for creating new node for the new element insertion into the queue.*/
     queue() {
-
-        this.first = new NodeLL(null, null);
-        this.rear = this.first;
-        this.count++;
+        this.first = new NodeLL(null, null);//new node is created.
+        this.rear = this.first;//first assigned to last node as no element is present.
+        this.count++;// count is increased.
     }
-
+/*Used for creating new node for the new element insertion into the queue.*/
     size() {
-        return this.count;
+        return this.count;//returns the size of the list.
     }
-
+/*Checks whether the queue is empty or not.*/
     isEmpty() {
 
         if (this.size() === 0)
-            return true
-        else return false;
+            return true; //returns true if empty
+        else return false; //returns false if element present.
     }
-
+/*Used for deleting each element from the queue at the end.*/
     enqueue(e) {
-
         if (this.first === null) {
 
-            this.first = new NodeLL(e, null);
+            this.first = new NodeLL(e, null);     /*If the 
+                                                    queue is empty*/
             this.rear = this.first;
             this.count++;
             return;
         }
-
-        this.rear.next = new NodeLL(e, null);
-        this.rear = this.rear.next;
-        this.count++;
+        this.rear.next = new NodeLL(e, null);//adding elements at the end
+        this.rear = this.rear.next;//iterating to next element.
+        this.count++;//increasing the count value.
         
     }
-
+/*Used for deleting the element from the front of the queue.*/
     dequeue(){
 
-        if (this.first === null) return null;
-
+        if (this.first === null) return null; //returns if the queue is empty.
         var n = this.first.ele;
 
-        this.first = this.first.next;
-        this.count--;
-
-        return n;
-
+        this.first = this.first.next;//iterating to next element.
+        this.count--;//decrementing the count value.
+        return n;//returning the element deleted.
     }
+/*Used for returning the first elemnt of the queue.*/
     front(){
-        return this.first.ele;
+        return this.first.ele;//returning first element.
     }
-
+/*Used for printing the queue.*/
     printList(){
 
-        if (this.size()===0) return "[]";
+        if (this.size()===0) return "[]";//returns if the queue is empty.
 
         var n = this.first;
-        var str = n.ele+" ";
+        var str = n.ele+" ";//adds all the elememnt in a string before printing.
         while(n.next!== null){
 
             n = n.next;
-            str += n.ele+" ";
+            str += n.ele+" ";// iterating the loop to the next element.
         }
-        return str;
+        return str;//returning the string.
         
      }
     }
 
 module.exports = {
+/**
+ * @description It performes the function of unordered list and adds the string 
+ * to the file if the string is not present and removes it if the string is present in the .txt file.
+ */
     unordered : function(str)
     {
         var fs=require('fs');
@@ -630,6 +647,11 @@ module.exports = {
 
 
     },
+/**
+ * @description It orders the numbers in the form of ascending order while entering in the list and
+ * adds a number searched in the proper position if the number is not present in the list or removes it
+ * if it is present in the list.
+ */
     ordered : function(str1){
         var fs=require('fs');
         var text=fs.readFileSync('read1.txt','utf8');
@@ -692,6 +714,11 @@ module.exports = {
         process.exit();
         
     },
+/**
+ * @description It performes the stack operation of entering the brackets and deleting the brackets into
+ * the list and decides that whether the expression is balanced or not, by checking if the stack is
+ * empty or not. 
+ */
     stack : function(exp){
             var arr=[];
             var x;
@@ -735,6 +762,11 @@ module.exports = {
             }  
         
     },
+/**
+ * @description It performes the function of entering each person in a queue and performing the banking
+ * withdrawl and deposit into their respective account and then removing each of them after the
+ * transaction ends and the balance is displayed.
+ */
     queue : function(number)
     {   var read = require('readline-sync');
         var arr=[];
@@ -772,6 +804,11 @@ module.exports = {
         }
         process.exit();
     },
+/**
+ * @description It performes the function to check whether a word is a palindrome or not by pushing 
+ * the letter of the string into a deque, and then removing the letter from the back and then checking
+ * whether the string matches the previous string or not.
+ */
     palindrome : function(string)
     {
         var s1=string;
@@ -798,6 +835,10 @@ module.exports = {
             console.log("The string is not a palindrome!!");
         }
     },
+ /**
+ * @description It performes the function to check all the prime numbers between the given range 0 - 1000
+ * and store them in a 2D array along with the range given.
+ */      
     prime2D : function (min,max) {
         var flag, i, prime = [], arr = [], array = [], arr1 = [], arr2 = [], arr3 = [], arr4 = [], arr5 = [], arr6 = [], arr7 = [], arr8 = [], arr9 = [];
 
@@ -883,6 +924,10 @@ module.exports = {
         console.log("[0-100: " + array[0] + '\n' + "100-200: " + array[1] + '\n' + "200-300: " + array[2] + '\n' + "300-400: " + array[3] + '\n' + "400-500: " + array[4] + '\n' + "500-600: " + array[5] + '\n' + "600-700: " + array[6] + '\n' + "700-800: " + array[7] + '\n' + "800-900: " + array[8] + '\n' + "900-1000: " + array[9] + "]");
         //console.log(array);
     },
+ /**
+ * @description It performes the function of checking all the prime numbers and checking again the anagrams
+ * from them and storing inside a 2D array the numbers which are prime and the numbers which are not prime.
+ */     
     extended : function(min,max){
         var i,flag,prime=[],anagram=[],notAnagram=[],j,n,n1;
         var arr=[];
@@ -941,6 +986,10 @@ module.exports = {
         // }
 
     },
+/**
+ * @description It performes the function of checking all the prime numbers and returns all the
+ * prime numbers for the anagramPrimeCheck function.
+ */     
     primeCheck: function (min,max) {
 
         var arr = [];
@@ -961,8 +1010,11 @@ module.exports = {
         return arr;
 
     },
-     
-anagramPrimeCheck: function (arr) {
+/**
+ * @description It performes the function of checking all anagrams among the prime numbers and return
+ * an array of all the anagram for the anagramStack function.
+ */    
+    anagramPrimeCheck: function (arr) {
 
 
         var a1 = [];
@@ -984,6 +1036,10 @@ anagramPrimeCheck: function (arr) {
         return a1;
 
     },
+/**
+ * @description It performes the function storing all the anagram into a stack and printing them in the
+ * reverse order between the given range.
+ */ 
     anagramStack: function (a2) {
 
         var objstack = new Stack1();
@@ -995,7 +1051,10 @@ anagramPrimeCheck: function (arr) {
 
         console.log(objstack.printList());
     },
-
+/**
+ * @description It performes the function of storing all the anagrams into a queue and printing them in
+ * ascending order from the queue between the given range.
+ */ 
     anagramQueue: function (a2) {
 
         var objqueue = new Queue1();
@@ -1007,6 +1066,9 @@ anagramPrimeCheck: function (arr) {
 
         console.log(objqueue.printList());
     },
+/**
+ * @description It prints the calender in the form of 2D array implementing 2D array.
+ */ 
     calender : function(month,year)
     {
         var numberOfDays = new Date(year, month, 0).getDate();
@@ -1137,6 +1199,9 @@ anagramPrimeCheck: function (arr) {
             console.log(dateArr[j]+'\n');
         }
     },
+/**
+ * @description It prints the calender implementing the queue, implementing linked list.
+ */ 
     queueCalender : function(month,year){
         var numberOfDays = new Date(year, month, 0).getDate();
         var dateObj=new Date(); 
@@ -1262,6 +1327,9 @@ anagramPrimeCheck: function (arr) {
 
 
     },
+/**
+ * @description It prints the calender implementing the queue and two stacks implementing linked list.
+ */ 
     stackCalender : function(month,year){
         var numberOfDays = new Date(year, month, 0).getDate();
         var dateObj=new Date(); 
@@ -1404,6 +1472,10 @@ anagramPrimeCheck: function (arr) {
         } 
         console.log(string5);
     },
+/**
+ * @description It shows the possibility of the number of brinary search trees possible for all the test
+ * cases and the number of nodes provided by the user.
+ */ 
     binarySearchTrees:function(nodes)
         {
             var firstTerm = parseInt(2*nodes);
@@ -1415,6 +1487,9 @@ anagramPrimeCheck: function (arr) {
             return numberofBinarySearchTress;
 
         },
+/**
+ * @description It is used for the factorial of a number calculation for the brinarySearchTrees function.
+*/ 
     factorial(n) 
         { 
             var res = 1;
@@ -1424,7 +1499,84 @@ anagramPrimeCheck: function (arr) {
             } 
         
             return res; 
+        },
+/**
+ * @description It is used for the factorial of a number calculation for the brinarySearchTrees function.
+*/ 
+    hash_search:function(val,length)
+
+        {
+            //var list=require('./structure_implementation/list2.js')
+            var fs = require('fs'); //file open
+            var contents = fs.readFileSync('number.txt', 'utf8')//copy contents in variable
+        
+            var arr=contents.split(' ') //split each value separated by space in an array
+        
+            arr=arr.sort(function(a,b){
+                return a-b;         //sort the whole array
+            });
+        var arr_list=new Array(length)
+        for(var i=0;i<length;i++)
+        {
+            arr_list[i]=(new LinkedList());   //create the number of container lists
         }
+
+        for(var i=0;i<arr.length;i++)
+        {                       
+            var rem=arr[i]%length;           //to find the hash key
+            arr_list[rem].add(arr[i]);   //to append the file to desired position using key
+            
+        }
+
+        var search_key=val%length;  //to find the search position according to the value to search
+
+        var bool=arr_list[search_key].search(val);//retuen if the value exixts or not 
+
+        if(bool)
+        {
+            console.log('\n\nvalue found deleting the value\n')
+            arr_list[search_key].removeElement(val)    //remove from the linked list
+            var arr_print=[];    //empty array
+            var final_string=''; //empty string
+            for(var i=0;i<length;i++)
+            {
+                var str=''  
+                str=i+'->'+arr_list[i].toString()+'';
+                arr_print.push(str);
+            }
+            for(var j=0;j<arr_print.length;j++)
+            {
+                final_string+=arr_print[j]+'\n';
+            }
+            console.log(final_string);
+            fs.writeFileSync('hashfile.txt',final_string);
+            process.exit();
+        }
+
+        else
+        {
+            console.log('\n\nvalue not found adding to hash table\n')
+            arr_list[search_key].add(val);         //append new value to the particular linked list
+            var arr_print=[];
+            var final_string='';
+            //console.log(arr_list[0].printList());
+            
+            for(var i=0;i<length;i++)
+            {
+                var str='';
+                str=i+'->'+arr_list[i].toString()+'';
+                arr_print.push(str);                //concatinating each element of a linked list to an empty string 
+            }
+            for(var j=0;j<arr_print.length;j++)
+            {
+                final_string+=arr_print[j]+'\n';
+            }
+            console.log(final_string);
+            fs.writeFileSync('hashfile.txt',final_string);
+            process.exit();
+        }
+
+        },
 }
  
     

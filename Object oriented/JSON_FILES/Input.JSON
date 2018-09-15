@@ -1,0 +1,14 @@
+{
+    "Stock" : {
+        "StockNames" : [],
+        "Number_of_shares" : [],
+        "SharePrice" : []
+
+    },
+    "Stock1" : {
+        "StockNames" : [],
+        "Number_of_shares" : [],
+        "SharePrice" : []
+
+    }
+}
